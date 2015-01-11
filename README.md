@@ -1,7 +1,7 @@
 lw-timeago
 ==========
 
-A lightweight implementation of the [Timeago jQuesry plugin](http://timeago.yarp.com/), allowing fuzzy timestamps to be dynamically generated and displayed.
+A lightweight implementation of the [Timeago jQuery plugin](http://timeago.yarp.com/), allowing fuzzy timestamps to be dynamically generated and displayed.
 
 Example
 -------
