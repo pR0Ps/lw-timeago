@@ -1,8 +1,11 @@
 var lw_timeago = function() {
 
   var config = {
+    whitelist: "data-timeago", //set to null to disable whitelisting
+
     suffixAgo: "ago",
     suffixFromNow: "from now",
+
     seconds: "less than a minute",
     minute: "about a minute",
     minutes: "%d minutes",
@@ -15,7 +18,7 @@ var lw_timeago = function() {
     year: "about a year",
     years: "%d years",
   }
-      
+
   function inWords(distanceMillis) {
     // Produce a string representing the milliseconds in a human-readable way
 
@@ -58,11 +61,14 @@ var lw_timeago = function() {
     var times = document.getElementsByTagName("time")
     for (var i = 0; i < times.length; i++){
 
-      var datetime = times[i].attributes.getNamedItem("datetime");
+      if (config.whitelist && !times[i].hasAttribute(config.whitelist))
+        break;
+
+      var datetime = times[i].getAttribute("datetime");
       if (!datetime)
         break;
 
-      var parsed = Date.parse(datetime.value);
+      var parsed = Date.parse(datetime);
       if (parsed) {
         times[i].title = times[i].innerHTML;
         times[i].innerHTML = inWords(diff(parsed));
