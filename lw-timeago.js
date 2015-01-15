@@ -57,8 +57,8 @@ var lw_timeago = function() {
   }
 
   function doReplace(){
-    // Go over all <time> elements, change enclosed absolute time to a relative time,
-    // and set the absolute time as the title so hovering will display it.
+    // Go over all <time> elements, grab the datetime attribute, then calculate
+    // and display a fuzzy representation of it.
 
     var times = document.getElementsByTagName("time")
     for (var i = 0; i < times.length; i++){
