@@ -17,11 +17,8 @@ Output:
 
 Usage
 -----
-Include the `lw-timeago.js` file in the html head (`<script src="lw-timeago.js" type="text/javascript"></script>`)
-
-Markup times in the HTML source with `<time>` tags, making sure they have a `datetime` attribute. The datetime attribute *MUST* be ISO 8601 formatted.
-
-Just before the closing `<body>` tag, add `<script type="text/javascript">lw_timeago.doReplace()</script>`
+1. Markup times in the HTML source with `<time>` tags, making sure they have a `datetime` attribute. The datetime attribute *MUST* be ISO 8601 formatted.
+2. Include the `lw-timeago.js` file in the html head (`<script src="lw-timeago.js" type="text/javascript"></script>`)
 
 The text can all be customized if needed, look at the `config` section of the script.
 

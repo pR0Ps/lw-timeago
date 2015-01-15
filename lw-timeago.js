@@ -1,6 +1,6 @@
-var lw_timeago = {
+var lw_timeago = function() {
 
-  config: {
+  var config = {
     suffixAgo: "ago",
     suffixFromNow: "from now",
     seconds: "less than a minute",
@@ -14,12 +14,12 @@ var lw_timeago = {
     months: "%d months",
     year: "about a year",
     years: "%d years",
-  },
+  }
       
-  inWords: function(distanceMillis) {
+  function inWords(distanceMillis) {
     // Produce a string representing the milliseconds in a human-readable way
 
-    var suffix = distanceMillis < 0 ? this.config.suffixFromNow : this.config.suffixAgo;
+    var suffix = distanceMillis < 0 ? config.suffixFromNow : config.suffixAgo;
     var seconds = Math.abs(distanceMillis) / 1000;
     var minutes = seconds / 60;
     var hours = minutes / 60;
@@ -31,27 +31,27 @@ var lw_timeago = {
     }
 
     var words =
-      seconds < 45 && substitute(this.config.seconds, Math.round(seconds)) ||
-      seconds < 90 && substitute(this.config.minute, 1) ||
-      minutes < 45 && substitute(this.config.minutes, Math.round(minutes)) ||
-      minutes < 90 && substitute(this.config.hour, 1) ||
-      hours < 24 && substitute(this.config.hours, Math.round(hours)) ||
-      hours < 42 && substitute(this.config.day, 1) ||
-      days < 30 && substitute(this.config.days, Math.round(days)) ||
-      days < 45 && substitute(this.config.month, 1) ||
-      days < 365 && substitute(this.config.months, Math.round(days / 30)) ||
-      years < 1.5 && substitute(this.config.year, 1) ||
-      substitute(this.config.years, Math.round(years));
+      seconds < 45 && substitute(config.seconds, Math.round(seconds)) ||
+      seconds < 90 && substitute(config.minute, 1) ||
+      minutes < 45 && substitute(config.minutes, Math.round(minutes)) ||
+      minutes < 90 && substitute(config.hour, 1) ||
+      hours < 24 && substitute(config.hours, Math.round(hours)) ||
+      hours < 42 && substitute(config.day, 1) ||
+      days < 30 && substitute(config.days, Math.round(days)) ||
+      days < 45 && substitute(config.month, 1) ||
+      days < 365 && substitute(config.months, Math.round(days / 30)) ||
+      years < 1.5 && substitute(config.year, 1) ||
+      substitute(config.years, Math.round(years));
 
     return words + " " + suffix;
-  },
+  }
 
-  distance: function(timestamp) {
+  function diff(timestamp) {
     // Get the number of milliseconds distance from the current time
     return Date.now() - timestamp;
-  },
+  }
 
-  doReplace: function(){
+  function doReplace(){
     // Go over all <time> elements, change enclosed absolute time to a relative time,
     // and set the absolute time as the title so hovering will display it.
 
@@ -65,8 +65,13 @@ var lw_timeago = {
       var parsed = Date.parse(datetime.value);
       if (parsed) {
         times[i].title = times[i].innerHTML;
-        times[i].innerHTML = this.inWords(this.distance(parsed));
+        times[i].innerHTML = inWords(diff(parsed));
       }
     }
   }
-};
+
+  return doReplace;
+}();
+
+// Replace all the times after the page loads
+window.addEventListener("load", lw_timeago);
