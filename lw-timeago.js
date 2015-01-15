@@ -1,7 +1,9 @@
 var lw_timeago = function() {
 
   var config = {
-    whitelist: "data-timeago", //set to null to disable whitelisting
+    whitelist: "data-timeago", // Set to null to disable whitelisting
+
+    keepDate: true, // If true, appends the original date after the fuzzy one
 
     suffixAgo: "ago",
     suffixFromNow: "from now",
@@ -68,11 +70,19 @@ var lw_timeago = function() {
       if (!datetime)
         break;
 
-      var parsed = Date.parse(datetime);
-      if (parsed) {
-        times[i].title = times[i].innerHTML;
-        times[i].innerHTML = inWords(diff(parsed));
+      var parsed = new Date(datetime);
+      if (!parsed)
+        break;
+
+      var words = inWords(diff(parsed.getTime()));
+      var title = times[i].innerHTML;
+      if (config.keepDate){
+        words += " on " + times[i].innerHTML;
+        title = parsed.toLocaleString()
       }
+
+      times[i].title = title;
+      times[i].innerHTML = words;
     }
   }
 

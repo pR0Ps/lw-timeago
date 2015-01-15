@@ -5,15 +5,25 @@ A lightweight implementation of the [Timeago jQuery plugin](http://timeago.yarp.
 
 Example
 -------
-Original:
-```
+
+#### Original
+```html
 <time datetime="2012-02-11T22:05:00-05:00">Feb 11, 2012</time>
 ```
 
-Output:
+#### Outputs
+```html
+<time title="Feb 11, 2012" datetime="2012-02-11T22:05:00-05:00">3 years ago</time>
+<time title="2/11/2012, 10:05:00 PM" datetime="2012-02-11T22:05:00-05:00">3 years ago on Feb 11, 2012</time>
 ```
-<time title="Feb 11, 2012" datetime="2012-02-11T22:05:00-05:00">about 3 years ago</time>
-```
+
+Configuration
+-------------
+In the `config` section of the script there are a few options that can be configured.
+- `whitelist`: Only process `<time>` tags with this attribute. Setting it to `null` disables whitelisting (all `<time>` tags are processed).
+- `keepDate`: If `true`, don't replace the date in the `<time>` tags, prepend the fuzzy time to it (see the second example above).
+
+Additionally, the text can all be customized.
 
 Usage
 -----
@@ -22,8 +32,6 @@ Step 2 can be skipped if `whitelist` is set to `null` in the config.
 1. Markup times in the HTML source with `<time>` tags, making sure they have a `datetime` attribute. The datetime attribute *MUST* be ISO 8601 formatted.
 2. For all `<time>` tags that should be converted to fuzzy times, add a 'data-timeago` attribute to them.
 3. Include the `lw-timeago.js` file in the html head (`<script src="lw-timeago.js" type="text/javascript"></script>`)
-
-The text can all be customized if needed, look in the `config` section of the script.
 
 License
 -------
