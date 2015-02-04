@@ -31,7 +31,8 @@ Step 2 can be skipped if `whitelist` is set to `null` in the config.
 
 1. Markup times in the HTML source with `<time>` tags, making sure they have a `datetime` attribute. The datetime attribute *MUST* be ISO 8601 formatted.
 2. For all `<time>` tags that should be converted to fuzzy times, add `data-timeago` attributes to them.
-3. Include the `lw-timeago.js` file in the html head (`<script src="lw-timeago.js" type="text/javascript"></script>`)
+3. Include the `lw-timeago.js` file in the html head (`<script src="lw-timeago.js" type="text/javascript"></script>`).
+4. Call the `lw_timeago()` function when the page loads (`<script type="text/javascript">window.addEventListener("load", lw_timeago);</script>`).
 
 License
 -------

@@ -88,6 +88,3 @@ var lw_timeago = function() {
 
   return doReplace;
 }();
-
-// Replace all the times after the page loads
-window.addEventListener("load", lw_timeago);
