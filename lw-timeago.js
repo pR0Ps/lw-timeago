@@ -7,6 +7,7 @@ var lw_timeago = function() {
 
     suffixAgo: "ago",
     suffixFromNow: "from now",
+    on: "on",
 
     seconds: "less than a minute",
     minute: "about a minute",
@@ -77,7 +78,7 @@ var lw_timeago = function() {
       var words = inWords(diff(parsed.getTime()));
       var title = times[i].innerHTML;
       if (config.keepDate){
-        words += " on " + times[i].innerHTML;
+        words += " " + config.on + " " + times[i].innerHTML;
         title = parsed.toLocaleString()
       }
 
